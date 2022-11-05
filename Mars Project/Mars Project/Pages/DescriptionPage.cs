@@ -1,4 +1,6 @@
 ﻿
+using Mars_Project.Utiities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace Mars_Project.Pages
@@ -16,6 +18,18 @@ namespace Mars_Project.Pages
 
             IWebElement saveButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/button"));
             saveButton.Click();
+
+            WaitHelpers.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/div/span", 2);
+
+          
         }
+        public string GetSavedDescription(IWebDriver driver)
+        {
+
+            IWebElement savedDescription = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/div/span"));
+            return savedDescription.Text;
+        }
+
+
     }
 }

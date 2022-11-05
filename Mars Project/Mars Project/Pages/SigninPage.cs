@@ -45,14 +45,7 @@ namespace Mars_Project.Pages
             //check if user has logged in successfully
             IWebElement hiHema = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/div[1]/div[2]/div/span"));
             Assert.That(hiHema.Text == "Hi Hema", "login not Successful.");
-            //if (hiHema.Text == "Hi Hema")
-            //{
-            //    Console.WriteLine("logged in Successfully, Test passed");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("logged in Un successful,Test failed");
-            //}
+           
 
         }
     }

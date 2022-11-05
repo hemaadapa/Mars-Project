@@ -17,10 +17,9 @@ namespace Mars_Project.Pages
 
             IWebElement addNewButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div"));
             addNewButton.Click();
-            
 
-            //IWebElement languageCancelButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[2]"));
-            //languageCancelButton.Click();
+
+
 
             IWebElement addLanguageTextbox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[1]/input"));
             addLanguageTextbox.SendKeys("English");
@@ -28,45 +27,44 @@ namespace Mars_Project.Pages
             IWebElement chooseLanguagelevelDropdown = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select"));
             chooseLanguagelevelDropdown.Click();
 
-            //IWebElement basicOption = driver.FindElement(By.XPath("//*[@id="account-profile-section"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[2]"));
-            //basicOption.Click();
+
 
             IWebElement conversationalOption = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[3]"));
             conversationalOption.Click();
 
-            //IWebElement fluentOption = driver.FindElement(By.XPath("//*[@id="account-profile-section"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[4]"));
-            //fluentOption.Click();
-
-            //IWebElement nativeOption = driver.FindElement(By.XPath("//*[@id="account-profile-section"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[5]"));
-            //nativeOption.Click();
 
             IWebElement addButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]"));
             addButton.Click();
-            
+
             WaitHelpers.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]", 2);
 
             //check if language record saved  in successfully
-            IWebElement languageRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
-            Assert.That(languageRecord.Text == "English", "Actual code and Expected code do not match.");
-            //if (languageRecord.Text == "English")
-            //{
-            //    Console.WriteLine("lnguage record saved in Successfully");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("language Record Hasnt saved ");
-            //}
+          
+           
+
 
         }
+        public string GetLanguageRecord(IWebDriver driver)
+        {
+            IWebElement languageRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
+            return languageRecord.Text;
+        }
 
-        public void Edit(IWebDriver driver)
+        public string GetLanguageLevel(IWebDriver driver)
+        {
+            IWebElement languageLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
+            return languageLevel.Text;
+        }
+
+
+        public void Edit(IWebDriver driver , string language, string languagelevel)
         {
             IWebElement languageRecordEditButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[1]/i"));
             languageRecordEditButton.Click();
 
             IWebElement editaLanguageTextbox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[1]/input"));
             editaLanguageTextbox.Clear();
-            editaLanguageTextbox.SendKeys("Maths");
+            editaLanguageTextbox.SendKeys(language);
 
             IWebElement editLanguageLevelDropdown = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select"));
             editLanguageLevelDropdown.Click();
@@ -80,44 +78,51 @@ namespace Mars_Project.Pages
 
             WaitHelpers.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]", 2);
 
-            IWebElement updatedLanguageRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
-            Assert.That(updatedLanguageRecord.Text == "Maths", "Actualcode and Expected code donot match.");
-            //if (updatedLanguageRecord.Text == "Maths")
-            //{
-            //    Console.WriteLine("LanguageRecord Has been updated successfully.");
+            
+            
 
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Record Hasn't been updated.");
-            //}
-
-            //IWebElement cancelUpdate = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/span/input[2]"));
-            //cancelUpdate.Click();
+            
         }
-        public void Delete(IWebDriver driver)
+        public string GetUpdatedLanguageRecord(IWebDriver driver)
+        {
+            IWebElement updatedLanguageRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
+            return updatedLanguageRecord.Text;
+        }
+        public string GetUpdatedLanguageLevel(IWebDriver driver)
+        {
+            IWebElement updatedLanguageLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
+            return updatedLanguageLevel.Text;
+
+        }
+
+        public void Delete(IWebDriver driver) 
         {
             //code for Delete Button
             WaitHelpers.WaitToBeClickable(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[2]/i", 3);
             IWebElement languageRecordDeleteButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[2]/i"));
             languageRecordDeleteButton.Click();
 
-            WaitHelpers.WaitToBeClickable(driver, "Xpath" ,"//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[1]",3);
+            WaitHelpers.WaitToBeClickable(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[1]", 3);
+
             
+
+
+
+
+
+        }
+        public string GetdeletedLanguageRecord(IWebDriver driver)
+        {
+
             IWebElement deletedLanguageRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[1]"));
-            Assert.That(deletedLanguageRecord.Text != "Maths", "Actual code and expected code do not match.");
-            //if (deletedLanguageRecord.Text != "Maths")
-            //{
-            //    Console.WriteLine("LanguageRecord Has been deleted successfully.");
+            return deletedLanguageRecord.Text;
 
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Language Record Hasn't been deleted.");
-            //}
-
-
-
+        }
+        public string GetdeletedLanguageLevel(IWebDriver driver)
+        {
+           
+            IWebElement deletedLanguageLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[2]"));
+            return deletedLanguageLevel.Text;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Mars_Project.Utiities
                 if (locator == "Id")
                 {
                   wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id(locatorValue)));
-                }
+                } 
                 if(locator == "cssSelector")
                 {
                   wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.CssSelector(locatorValue)));

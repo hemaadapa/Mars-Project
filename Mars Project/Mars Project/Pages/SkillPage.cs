@@ -1,4 +1,5 @@
 ﻿
+using System.Xml.Linq;
 using Mars_Project.Utiities;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -29,30 +30,41 @@ namespace Mars_Project.Pages
             IWebElement addSkillButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[1]"));
             addSkillButton.Click();
 
-            //IWebElement skillCancelbutton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[2]"));
-            //skillCancelbutton.Click();
+
 
 
             //check skill record saved successfully
             WaitHelpers.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]", 3);
-            IWebElement skillRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]"));
-            Assert.That(skillRecord.Text == "HTML", "Skill Record Hasn't Saved.");
-            //if (skillRecord.Text == "HTML")
-            //{
-            //    Console.WriteLine("skill record saved in Successfully.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("skill Record Hasn't saved.");
-            //}
+
+            
+
+
+
 
         }
+        public string GetskillRecord( IWebDriver driver)
+        {
 
-        public void Edit(IWebDriver driver)
+            IWebElement skillRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]"));
+            return skillRecord.Text;
+        }
+
+        public string GetSkillLevel(IWebDriver driver)
+        {
+            IWebElement skillLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[2]"));
+            return skillLevel.Text;
+        }
+
+        public void Edit(IWebDriver driver, string skill, string skilllevel)
         {
             //Code for Edit Skill Record
             IWebElement editSkillRecordButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[3]/span[1]/i"));
             editSkillRecordButton.Click();
+
+            IWebElement editSkillLanguageTextbox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td/div/div[1]/input"));
+            editSkillLanguageTextbox.Clear();
+            editSkillLanguageTextbox.SendKeys("SQL");
+
 
             IWebElement skillLevelDropdown = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td/div/div[2]/select"));
             skillLevelDropdown.Click();
@@ -63,28 +75,32 @@ namespace Mars_Project.Pages
             IWebElement updateSkillButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td/div/span/input[1]"));
             updateSkillButton.Click();
 
-            //IWebElement cancelSkillEditBUtton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td/div/span/input[2]"));
-            //cancelSkillEditBUtton.Click();
 
-            //IWebElement skillRecordDeleteButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[2]/i"));
-            //skillRecordDeleteButton.Click();    
 
 
             WaitHelpers.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[2]", 3);
-            IWebElement updatedSkillRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[2]"));
-            Assert.That(updatedSkillRecord.Text == "Expert", "Skill Record hasn't been updated.");
-            //if (updatedSkillRecord.Text == "Expert")
-            //{
-            //    Console.WriteLine("Record Has been Updated successfully.");
 
-            //}
+            
 
-            //else
-            //{
-            //    Console.WriteLine("Record hasn't been updated.");
-            //}
+           
 
         }
+
+        public string Getupdatedskilllanguage(IWebDriver driver)
+        {
+
+            IWebElement updatedSkillLanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]"));
+            return updatedSkillLanguage.Text;
+
+        }
+        public string GetupdatedSkillLevelRecord(IWebDriver driver)
+        {
+            IWebElement updatedSkillLevelRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[2]"));
+            return updatedSkillLevelRecord.Text;
+        }
+
+
+
         public void Delete(IWebDriver driver)
         {
 
@@ -95,18 +111,23 @@ namespace Mars_Project.Pages
 
 
             WaitHelpers.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[1]", 3);
-            IWebElement deletedRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[1]"));
-            Assert.That(deletedRecord.Text != "null", "Skill REcord HAsnt been deleted.");
-            //if (deletedRecord.Text != "null")
-            //{
-            //    Console.WriteLine("Skill Record has been Deleted successfully.");
 
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Skill Record hasn't  been deleted.");
+            
+            
 
-            //}
+          
+
+        }
+        public string GetdeletedSkillLanguage(IWebDriver driver)
+        {
+            IWebElement deletedSkillLanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[1]"));
+            return deletedSkillLanguage.Text;
+
+        }
+        public string GetdeletedSkillLevel(IWebDriver driver)
+        {
+            IWebElement deletedSkillLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[2]"));
+            return deletedSkillLevel.Text;
         }
     }
 }
