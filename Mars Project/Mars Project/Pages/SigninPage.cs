@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 
 namespace Mars_Project.Pages
 {
-    public class SigninPage
+    public class SigninPage : CommonDriver
     {
         public void SigninSteps(IWebDriver driver)
 

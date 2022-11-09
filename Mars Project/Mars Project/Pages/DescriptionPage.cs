@@ -5,10 +5,11 @@ using OpenQA.Selenium;
 
 namespace Mars_Project.Pages
 {
-    public class DescriptionPage
+    public class DescriptionPage : CommonDriver
     {
-        public void Add(IWebDriver driver)
+        public void Add()
         {
+            WaitHelpers.WaitToBeClickable(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/div/h3/span/i", 5);
             IWebElement descriptionEditButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/div/h3/span/i"));
             descriptionEditButton.Click();
 

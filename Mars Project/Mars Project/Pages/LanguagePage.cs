@@ -5,10 +5,10 @@ using OpenQA.Selenium;
 
 namespace Mars_Project.Pages
 {
-    public class LanguagePage
+    public class LanguagePage : CommonDriver
     {
 
-        public void Add(IWebDriver driver)
+        public void Add()
         {
 
             IWebElement languageButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]"));

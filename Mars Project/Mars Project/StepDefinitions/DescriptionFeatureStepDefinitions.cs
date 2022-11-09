@@ -24,7 +24,7 @@ namespace Mars_Project.StepDefinitions
         public void WhenIAddDescriptionToTheProfilePage()
         {
             DescriptionPage descriptionPageobj = new DescriptionPage();
-            descriptionPageobj.Add(driver);
+            descriptionPageobj.Add();
 
         }
 

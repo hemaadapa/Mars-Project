@@ -14,7 +14,7 @@ namespace Mars_Project.StepDefinitions
         [When(@"I add Skill on my profile page")]
         public void WhenIAddSkillOnMyProfilePage()
         {
-            skillPageObj.Add(driver);
+            skillPageObj.Add();
         }
 
 

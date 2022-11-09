@@ -11,14 +11,20 @@ namespace Mars_Project.Tests
 {
     public class DescriptionTests : CommonDriver
     {
-        [Test]
+        [Test, Order(1)]
         public void AddDescriptionTest()
         {
             //Description Page Object initialiazation and Definition
             DescriptionPage descriptionPageobj = new DescriptionPage();
 
             //Add Record
-            descriptionPageobj.Add(driver);
+            descriptionPageobj.Add();
+
+        }
+        [TearDown]
+        public void CloseTestRun()
+        {
+            driver.Quit();
 
         }
     }

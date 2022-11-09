@@ -10,20 +10,31 @@ using OpenQA.Selenium.Chrome;
 
 namespace Mars_Project.Tests
 {
-    [TestFixture]
+
+
+
+    
     public class SigninTests : CommonDriver
     {
 
-        [SetUp]
+      
+        [Test, Order(1)]
         public void SigninActions()
         {
 
             //open the browser
-            driver = new ChromeDriver();
+            //driver = new ChromeDriver();
 
             //Signin Page Object Initialization and Definition
             SigninPage signinPageobj = new SigninPage();
             signinPageobj.SigninSteps(driver);
         }
+        [TearDown]
+        public void CloseTestRun()
+        {
+            driver.Quit();
+
+        }
     }
 }
+

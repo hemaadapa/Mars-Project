@@ -15,7 +15,7 @@ namespace Mars_Project.StepDefinitions
         public void WhenIAddLanguageToTheProfilePage()
         {
             
-            languagePageobj.Add(driver);
+            languagePageobj.Add();
 
         }
 
@@ -36,7 +36,8 @@ namespace Mars_Project.StepDefinitions
         public void WhenIEditAndOnAnExistingLanguageRecord_(string language, string languagelevel)
         {
             languagePageobj.Edit(driver, language, languagelevel);
-
+            //languagePageObj.EditLanguage();
+            //languagePageObj.EditLangaugeLevel();
 
         }
 

@@ -7,18 +7,22 @@ using Mars_Project.Pages;
 using Mars_Project.Utiities;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace Mars_Project.Tests
 {
     public class LanguageTests : CommonDriver
     {
+        IWebDriver driver = new ChromeDriver();
+
+
         [Test, Order(1)]
         public void AddLanguageTest()
         {
 
             //Language page Object Initialization Nad Definition
             LanguagePage languagePageobj = new LanguagePage();
-            languagePageobj.Add(driver);
+            languagePageobj.Add();
 
         }
         [Test, Order(2)]
@@ -26,6 +30,7 @@ namespace Mars_Project.Tests
         {
             //Edit Record
             LanguagePage languagePageobj = new LanguagePage();
+            //languagePageobj.Edit();
             languagePageobj.Edit(driver,"language","languagelevel");
         }
         [Test, Order(3)]
@@ -34,14 +39,15 @@ namespace Mars_Project.Tests
 
             //Delete Record
             LanguagePage languagePageobj = new LanguagePage();
+            //languagePageobj.Delete();
             languagePageobj.Delete(driver);
         }
 
-        //[TearDown]
-        //public void CloseTestRun()
-        //{
-        //    driver.Quit();
+        [TearDown]
+        public void CloseTestRun()
+        {
+            driver.Quit();
 
-        //}
+        }
     }
 }

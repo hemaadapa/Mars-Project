@@ -7,9 +7,9 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Mars_Project.Pages
 {
-    public class SkillPage
+    public class SkillPage: CommonDriver
     {
-        public void Add(IWebDriver driver)
+        public void Add()
         {
             //code foe Skill Option
             IWebElement skillButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
