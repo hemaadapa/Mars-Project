@@ -9,6 +9,20 @@ namespace Mars_Project.StepDefinitions
     [Binding]
     public class SkillFeatureStepDefinitions : CommonDriver
     {
+        SigninPage signinPageobj;
+        SkillPage skillPageobj;
+
+
+
+        public SkillFeatureStepDefinitions()
+        {
+
+            this.signinPageobj = new SigninPage();
+            this.skillPageobj = new SkillPage();
+        }
+
+
+
         SkillPage skillPageObj = new SkillPage();
 
         [When(@"I add Skill on my profile page")]

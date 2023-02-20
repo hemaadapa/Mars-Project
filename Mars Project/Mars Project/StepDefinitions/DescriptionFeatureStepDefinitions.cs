@@ -10,15 +10,32 @@ namespace Mars_Project.StepDefinitions
     [Binding]
     public class DescriptionFeatureStepDefinitions :CommonDriver
     {
+
+        SigninPage signinPageobj;
+        DescriptionPage descriptionPageobj;
+
+
+        
+        public DescriptionFeatureStepDefinitions()
+        {
+            
+            this.signinPageobj = new SigninPage();
+            this.descriptionPageobj = new DescriptionPage();
+        }
+
+
         [Given(@"I logged into the Mars Portal")]
         public void GivenILoggedIntoTheMarsPortal()
         {
 
-            driver = new ChromeDriver();
-            SigninPage signinPageobj = new SigninPage();
-            signinPageobj.SigninSteps(driver);
-        
         }
+        //{
+
+        //    driver = new ChromeDriver();
+        //    SigninPage signinPageobj = new SigninPage();
+        //    signinPageobj.SigninSteps(driver);
+        
+        //}
 
         [When(@"I Add Description to the Profile page")]
         public void WhenIAddDescriptionToTheProfilePage()
@@ -36,7 +53,7 @@ namespace Mars_Project.StepDefinitions
             string savedDescription = descriptionPageobj.GetSavedDescription(driver);
 
 
-            Assert.That(savedDescription == "Iam a Self-driven,value-added person.", "Expected code and result code are not same.");
+            Assert.That(savedDescription == "I am a Self-driven, value-added person.", "Expected code and result code are not same.");
 
 
         }

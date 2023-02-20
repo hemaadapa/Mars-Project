@@ -9,7 +9,21 @@ namespace Mars_Project.StepDefinitions
     [Binding]
     public class LanguageFeatureStepDefinitions : CommonDriver
     {
-        LanguagePage languagePageobj = new LanguagePage();
+
+
+
+        SigninPage signinPageobj;
+        LanguagePage languagePageobj;
+
+
+
+        public LanguageFeatureStepDefinitions()
+        {
+
+            this.signinPageobj = new SigninPage();
+            this.languagePageobj = new LanguagePage();
+        }
+        //LanguagePage languagePageobj = new LanguagePage();
 
         [When(@"I add Language to the profile page")]
         public void WhenIAddLanguageToTheProfilePage()

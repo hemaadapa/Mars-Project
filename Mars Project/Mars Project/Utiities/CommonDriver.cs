@@ -12,20 +12,19 @@ namespace Mars_Project.Utiities
 {
     public class CommonDriver
     {
-
+        
         public static IWebDriver driver;
 
         [SetUp, OneTimeSetUp]
-        public void SignInActions()
+        public void SignInActions(IWebDriver driver)
         {
-            IWebDriver driver = new ChromeDriver();
+           
+             driver = new ChromeDriver();
 
             SigninPage signinPageObj = new SigninPage();
             signinPageObj.SigninSteps(driver);
             
-            LanguagePage languagePageObj = new LanguagePage();
-
-            SkillPage skillPageObj = new SkillPage();
+           
         }
     }
 }

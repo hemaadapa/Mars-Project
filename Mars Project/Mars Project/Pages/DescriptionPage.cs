@@ -7,27 +7,33 @@ namespace Mars_Project.Pages
 {
     public class DescriptionPage : CommonDriver
     {
+
+        public static IWebElement descriptionEditButton => driver.FindElement(By.XPath("//h3[@class='ui dividing header']//i[@class='outline write icon']"));
+        public static IWebElement descriptionTextbox => driver.FindElement(By.XPath("//textarea[@placeholder='Please tell us about any hobbies, additional expertise, or anything else you’d like to add.']"));
+        public static IWebElement saveButton => driver.FindElement(By.XPath("//button[@type='button']"));
+        public static IWebElement savedDescription => driver.FindElement(By.XPath("//div[@class='eight wide column']//div[@class='content']//div"));
+       
         public void Add()
         {
-            WaitHelpers.WaitToBeClickable(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/div/h3/span/i", 5);
-            IWebElement descriptionEditButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/div/h3/span/i"));
+            WaitHelpers.WaitToBeClickable(driver, "Xpath", "//h3[@class='ui dividing header']//i[@class='outline write icon']", 5);
+            
             descriptionEditButton.Click();
 
-            IWebElement descriptionTextbox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/div[1]/textarea"));
+           
             descriptionTextbox.Clear();
-            descriptionTextbox.SendKeys("Iam a Self-driven,value-added person.");
+            descriptionTextbox.SendKeys("I am a Self-driven, value-added person.");
 
-            IWebElement saveButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/button"));
+            
             saveButton.Click();
 
-            WaitHelpers.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/div/span", 2);
+            WaitHelpers.WaitToBeClickable(driver, "XPath", "//div[@class='eight wide column']//div[@class='content']//div", 2);
 
           
         }
         public string GetSavedDescription(IWebDriver driver)
         {
 
-            IWebElement savedDescription = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/div/span"));
+            
             return savedDescription.Text;
         }
 

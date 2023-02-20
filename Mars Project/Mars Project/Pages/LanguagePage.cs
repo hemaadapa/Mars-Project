@@ -7,36 +7,54 @@ namespace Mars_Project.Pages
 {
     public class LanguagePage : CommonDriver
     {
+        public static IWebElement languageButton => driver.FindElement(By.XPath("//a[@class='item active']"));
+        public static IWebElement addNewButton => driver.FindElement(By.XPath("//div[@class='ui bottom attached tab segment active tooltip-target']//div[@class='ui teal button '][normalize-space()='Add New']"));
+        public static IWebElement addLanguageTextbox =>  driver.FindElement(By.XPath("//input[@placeholder='Add Language']"));
+        public static IWebElement chooseLanguagelevelDropdown => driver.FindElement(By.XPath("//select[@name='level']"));
+        public static IWebElement conversationalOption => driver.FindElement(By.XPath("//option[contains(text(),'Conversational')]"));
+        public static IWebElement addButton =>  driver.FindElement(By.XPath("//input[@value='Add']"));
 
+        public static IWebElement languageRecord => driver.FindElement(By.XPath("//td[normalize-space()='English']"));
+
+        IWebElement languageLevel => driver.FindElement(By.XPath("//td[normalize-space()='Conversational']"));
+
+        public static IWebElement languageRecordEditButton => driver.FindElement(By.XPath("//tbody/tr[1]/td[3]/span[1]/i[1]"));
+
+        IWebElement editLanguageTextbox => driver.FindElement(By.XPath("//input[@placeholder='Add Language']"));
+        IWebElement editLanguageLevelDropdown => driver.FindElement(By.XPath("/select[@name='level']"));
+        public static IWebElement fluentOption => driver.FindElement(By.XPath("//option[contains(text(),'Fluent')]"));
+        IWebElement languageUpdateButton => driver.FindElement(By.XPath("//input[@value='Update']"));
+
+        IWebElement updatedLanguageRecord => driver.FindElement(By.XPath("//td[normalize-space()='Telugu']"));
+        IWebElement updatedLanguageLevel => driver.FindElement(By.XPath("//td[normalize-space()='Fluent']"));
+        IWebElement languageRecordDeleteButton => driver.FindElement(By.XPath("//tbody/tr[1]/td[3]/span[2]/i[1]"));
+        IWebElement deletedLanguageRecord => driver.FindElement(By.XPath("//th[normalize-space()='Language']"));
+        IWebElement deletedLanguageLevel => driver.FindElement(By.XPath("//div[@class='ui bottom attached tab segment active tooltip-target']//th[contains(text(),'Level')]"));
         public void Add()
         {
 
-            IWebElement languageButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]"));
             languageButton.Click();
-            WaitHelpers.WaitToBeClickable(driver, "XPath", "div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div", 3);
+            WaitHelpers.WaitToBeClickable(driver, "XPath", "//div[@class='ui bottom attached tab segment active tooltip-target']//div[@class='ui teal button '][normalize-space()='Add New']", 3);
 
-            IWebElement addNewButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div"));
             addNewButton.Click();
 
 
 
 
-            IWebElement addLanguageTextbox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[1]/input"));
+            
             addLanguageTextbox.SendKeys("English");
 
-            IWebElement chooseLanguagelevelDropdown = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select"));
             chooseLanguagelevelDropdown.Click();
 
 
 
-            IWebElement conversationalOption = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[3]"));
             conversationalOption.Click();
 
 
-            IWebElement addButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]"));
+            
             addButton.Click();
 
-            WaitHelpers.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]", 2);
+            WaitHelpers.WaitToBeClickable(driver, "XPath", "//td[normalize-space()='English']", 2);
 
             //check if language record saved  in successfully
           
@@ -46,37 +64,37 @@ namespace Mars_Project.Pages
         }
         public string GetLanguageRecord(IWebDriver driver)
         {
-            IWebElement languageRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
+            
             return languageRecord.Text;
         }
 
         public string GetLanguageLevel(IWebDriver driver)
         {
-            IWebElement languageLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
+           
             return languageLevel.Text;
         }
 
 
         public void Edit(IWebDriver driver , string language, string languagelevel)
         {
-            IWebElement languageRecordEditButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[1]/i"));
+            
             languageRecordEditButton.Click();
 
-            IWebElement editaLanguageTextbox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[1]/input"));
-            editaLanguageTextbox.Clear();
-            editaLanguageTextbox.SendKeys(language);
+            
+            editLanguageTextbox.Clear();
+            editLanguageTextbox.SendKeys(language);
 
-            IWebElement editLanguageLevelDropdown = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select"));
+          
             editLanguageLevelDropdown.Click();
 
-            IWebElement fluentOption = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[4]"));
+           
             fluentOption.Click();
 
-            IWebElement languageUpdateButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/span/input[1]"));
+           
             languageUpdateButton.Click();
 
 
-            WaitHelpers.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]", 2);
+            WaitHelpers.WaitToBeClickable(driver, "XPath", "//td[normalize-space()='Telugu']", 2);
 
             
             
@@ -85,12 +103,11 @@ namespace Mars_Project.Pages
         }
         public string GetUpdatedLanguageRecord(IWebDriver driver)
         {
-            IWebElement updatedLanguageRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
             return updatedLanguageRecord.Text;
         }
         public string GetUpdatedLanguageLevel(IWebDriver driver)
         {
-            IWebElement updatedLanguageLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
+          
             return updatedLanguageLevel.Text;
 
         }
@@ -98,11 +115,11 @@ namespace Mars_Project.Pages
         public void Delete(IWebDriver driver) 
         {
             //code for Delete Button
-            WaitHelpers.WaitToBeClickable(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[2]/i", 3);
-            IWebElement languageRecordDeleteButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[2]/i"));
+            WaitHelpers.WaitToBeClickable(driver, "Xpath", "//tbody/tr[1]/td[3]/span[2]/i[1]", 3);
+           
             languageRecordDeleteButton.Click();
 
-            WaitHelpers.WaitToBeClickable(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[1]", 3);
+            WaitHelpers.WaitToBeClickable(driver, "Xpath", "//th[normalize-space()='Language']", 3);
 
             
 
@@ -114,14 +131,14 @@ namespace Mars_Project.Pages
         public string GetdeletedLanguageRecord(IWebDriver driver)
         {
 
-            IWebElement deletedLanguageRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[1]"));
+          
             return deletedLanguageRecord.Text;
 
         }
         public string GetdeletedLanguageLevel(IWebDriver driver)
         {
            
-            IWebElement deletedLanguageLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[2]"));
+           
             return deletedLanguageLevel.Text;
         }
     }
